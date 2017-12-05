@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/oneKeyAccount/oneKeyAccount.iml" filepath="$PROJECT_DIR$/oneKeyAccount/oneKeyAccount.iml" />
+      <module fileurl="file://$PROJECT_DIR$/portalWeb/portalWeb.iml" filepath="$PROJECT_DIR$/portalWeb/portalWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/registerCenter/registerCenter.iml" filepath="$PROJECT_DIR$/registerCenter/registerCenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring_boot.iml" filepath="$PROJECT_DIR$/.idea/spring_boot.iml" />
+    </modules>
+  </component>
+</project>

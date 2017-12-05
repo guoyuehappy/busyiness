@@ -1,0 +1,11 @@
+server: 
+  port: 8998
+eureka: 
+  instance: 
+    hostname: 127.0.0.1
+    appname: DiscoveryServer
+  client: 
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl: 
+      defaultZone: http://127.0.0.1:8998/eureka/

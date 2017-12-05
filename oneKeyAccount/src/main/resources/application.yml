@@ -1,0 +1,13 @@
+eureka: 
+  client: 
+    serviceUrl: 
+      defaultZone: http://127.0.0.1:8998/eureka/
+      registerWithEureka: true
+      fetchRegistry: true
+  instance: 
+    prefer-ip-address: true
+spring: 
+  application: 
+    name: oneKeyAccount
+server: 
+  port: 8999
