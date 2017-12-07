@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Hello World!</title>
+</head>
+<script type="text/javascript" src="/js/jquery-1.9.1/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/common/city.js"></script>
+<script type="text/javascript" src="/js/common/sysCode.js"></script>
+<script type="text/javascript">
+    function submitCheck() {
+        //alert("hehe");
+        var CERT_NAME = $("#CERT_NAME").val();
+        var CERT_NUM = $("#CERT_NUM").val();
+        var ID_TYPE = $("#ID_TYPE").val();
+        var CERT_TYPE = $("#CERT_TYPE").val();
+        var SYS_CODE = $("#SYS_CODE").val();
+        var PROVINCE_CODE = $("#PROVINCE_CODE").val();
+        var EPARCHY_CODE = $("#EPARCHY_CODE").val();
+        //alert(CERT_NAME+CERT_NUM+ID_TYPE+CERT_TYPE+SYS_CODE+PROVINCE_CODE+EPARCHY_CODE);
+        $.post(
+            "/oneKeyAccount/identityCheck",
+            {
+                CERT_NAME:CERT_NAME,CERT_NUM:CERT_NUM,ID_TYPE:ID_TYPE,
+                CERT_TYPE:CERT_TYPE,SYS_CODE:SYS_CODE,PROVINCE_CODE:PROVINCE_CODE,
+                EPARCHY_CODE:EPARCHY_CODE
+            },
+            function(data,status){
+                //alert(data.UNI_BSS_BODY.IDENTITY_CHECK_RSP);
+                $("#idetityCheckRsp").html("");
+                //alert(data.UNI_BSS_BODY.IDENTITY_CHECK_RSP.RESP_DESC)
+                var div = "";
+                div = div + "<thead><tr>";
+                div = div + "<th>RESP_CODE(响应编码)</th>";
+                div = div + "<th>RESP_DESC(响应描述)</th>";
+                div = div + "<th>CERT_PHOTO(证件照片)</th>";
+                div = div + "</tr></thead><tbody>";
+                var rsp = data.UNI_BSS_BODY.IDENTITY_CHECK_RSP;
+                div = div + "<tr>";
+                div = div + "<td>"+ rsp.RESP_CODE + "</td>";
+                div = div + "<td>"+ rsp.RESP_DESC + "</td>";
+                div = div + '<td><img src="data:image/png;base64,'+ rsp.CERT_PHOTO + '"></img></td></tr>';
+                div = div + "</tbody>";
+                $("#idetityCheckRsp").append(div);
+            },
+            'json'
+        );
+    }
+</script>
+<body>
+<h1 th:inline="text">身份认证</h1>
+<p th:text="这是身份认证主页面"></p>
+<form action = "#">
+    证件姓名：<input id="CERT_NAME" type="text"/>
+    证件编码：<input id="CERT_NUM" type="text"/>
+    证件类型：<select id="ID_TYPE" >
+                <option value="1">15位身份证编码</option>
+                <option value="2">17位身份证编码</option>
+                <option value="3">18位身份证编码</option>
+              </select>
+    认证类型：<select id="CERT_TYPE" >
+                <option value="01">组合认证</option>
+                <option value="02">公安认证</option>
+              </select><br/><br/>
+    系统编码：<select id="SYS_CODE">
+              </select>
+    省分： <select id="PROVINCE_CODE" onchange="findCity()">
+                 <option value="0">----选择省份----</option>
+           </select>
+    地市： <select id="EPARCHY_CODE" >
+                <option value="0">----选择城市----</option>
+           </select><br/>
+    <input type="button" value="提交认证信息" onclick="submitCheck()"/>
+</form>
+<table id="idetityCheckRsp"></table>
+</body>
+
+</html>
