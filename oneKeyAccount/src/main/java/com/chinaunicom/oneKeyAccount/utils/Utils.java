@@ -56,7 +56,6 @@ public class Utils {
             TRANS_ID = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(date) + (int)((Math.random()*9+1)*100000);
         }
 
-        System.out.println(TIMESTAMP + "     " + TRANS_ID);
         //APP_ID、TIMESTAMP、TRANS_ID、app_secret拼接成 APP_IDabcTIMESTAMP2016-04-12 15:06:06 100TRANS_ID20160412150606100335423B2732427app_secret
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("APP_ID").append(APP_ID);
