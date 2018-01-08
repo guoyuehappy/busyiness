@@ -2,6 +2,7 @@ package com.chinaunicom.oneKeyAccount.controller;
 
 import com.chinaunicom.oneKeyAccount.entity.IdentityCheckIn;
 import com.chinaunicom.oneKeyAccount.entity.OccupyNumIn;
+import com.chinaunicom.oneKeyAccount.entity.Param2TokenIn;
 import com.chinaunicom.oneKeyAccount.entity.Token2HeadIn;
 import com.chinaunicom.oneKeyAccount.utils.Utils;
 import org.springframework.beans.factory.annotation.Value;
@@ -68,6 +69,16 @@ public class OneKeyAccountController {
         String url = vistAddress+"/api/resourceCenter/numberCenter/occupyNum/v1";
         return httpPost(reqString,url);
     }
+
+    @RequestMapping(value="/custDataCheck",method = RequestMethod.POST)
+    @ResponseBody
+    public  String custDataCheck(IdentityCheckIn identityCheckIn, Param2TokenIn param2TokenIn) {
+        Token2HeadIn token2HeadIn1 =  Utils.GenerateToken(param2TokenIn);
+        String reqString  = buildReqString(identityCheckIn,token2HeadIn1,"CUSTS_DATA_CHECK_REQ");
+        String url = vistAddress+"api/cBSS/CRM/custsDataCheck/v1";
+        return httpPost(reqString,url);
+    }
+
     public String httpPost(String reqString,String requestUrl){
         StringBuffer sbf = new StringBuffer();
         try {
