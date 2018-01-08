@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Hello World!</title>
+</head>
+<script type="text/javascript" src="/js/jquery-1.9.1/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/common/city.js"></script>
+<script type="text/javascript" src="/js/common/sysCode.js"></script>
+<script type="text/javascript" src="/js/occupyNum.js"></script>
+<body>
+<h1 th:inline="text">选占</h1>
+<p th:text="这是选占主页面"></p>
+<form action = "#">
+    渠道ID：<input id="CHANNEL_ID" type="text"/>
+    操作员ID：<input id="STAFF_ID" type="text"/>
+    业务号码：<input id="SERIAL_NUMBER" type="text"/>
+    卡&nbsp;&nbsp;&nbsp;&nbsp;号：<input id="ICCID" type="text"/>
+    IMSI：<input id="IMSI" type="text"/>
+    业务流水：<input id="REQ_NO" type="text"/><br/><br/>
+    系统编码：<select id="SYS_CODE">
+              </select>
+    省分： <select id="PROVINCE_CODE" onchange="findCity()">
+                 <option value="0">----选择省份----</option>
+           </select>
+    地市： <select id="CITY_CODE" >
+                <option value="110">北京</option>
+           </select><br/>
+    <input type="button" value="占用" onclick="submitCheck()"/>
+</form>
+<table id="occupyNumRsp"></table>
+</body>
+
+</html>

@@ -5,6 +5,10 @@ var sysCodeList = {
             "sname":"总部CRM平台"
         },
         {
+            "scode":"0002",
+            "sname":"总部VASP平台"
+        },
+        {
             "scode":"9900",
             "sname":"cBSS系统"
         }

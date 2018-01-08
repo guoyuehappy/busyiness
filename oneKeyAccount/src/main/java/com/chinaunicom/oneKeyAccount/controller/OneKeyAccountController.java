@@ -1,6 +1,7 @@
 package com.chinaunicom.oneKeyAccount.controller;
 
 import com.chinaunicom.oneKeyAccount.entity.IdentityCheckIn;
+import com.chinaunicom.oneKeyAccount.entity.OccupyNumIn;
 import com.chinaunicom.oneKeyAccount.entity.Token2HeadIn;
 import com.chinaunicom.oneKeyAccount.utils.Utils;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,9 +29,16 @@ public class OneKeyAccountController {
 
     @RequestMapping("/index")
     public String index(){
+        return "index";
+    }
+    @RequestMapping("/identityCheckPage")
+    public String identityCheck(){
         return "identityCheck";
     }
-
+    @RequestMapping("/occupyNumPage")
+    public String occupyNum(){
+        return "occupyNum";
+    }
     @RequestMapping(value="/identityCheck",method = RequestMethod.POST)
     @ResponseBody
     public  String identityCheck(IdentityCheckIn identityCheckIn, Token2HeadIn token2HeadIn, Model model) {
@@ -49,7 +57,17 @@ public class OneKeyAccountController {
         String url = vistAddress+"api/naturePersonCenter/faceRecognition/identityCheck/v1";
         return httpPost(reqString,url);
     }
-
+    @RequestMapping(value="/occupyNum",method = RequestMethod.POST)
+    @ResponseBody
+    public  String occupyNum(OccupyNumIn occupyNumIn, Token2HeadIn token2HeadIn, Model model) {
+        token2HeadIn.setAPP_ID("qJvt7XIWKN");
+        token2HeadIn.setTIMESTAMP("2017-12-29 08:46:04 843");
+        token2HeadIn.setTRANS_ID("20171229172188210010");
+        token2HeadIn.setTOKEN("f311046a46aaacefa9e2a277e73f4a91");
+        String reqString  = buildReqString(occupyNumIn,token2HeadIn,"OCCUPY_NUM_REQ");
+        String url = vistAddress+"/api/resourceCenter/numberCenter/occupyNum/v1";
+        return httpPost(reqString,url);
+    }
     public String httpPost(String reqString,String requestUrl){
         StringBuffer sbf = new StringBuffer();
         try {

@@ -2,57 +2,57 @@
 var prolist= {
     "ps": [
         {
-            "pid": "BJ",
+            "pid": "11",
             "pname": "北京市",
             "citys": [
                 {
-                    "cid": "BJ_1",
+                    "cid": "110",
                     "cname": "北京市"
                 }
             ]
         },
         {
-            "pid": "SH",
+            "pid": "31",
             "pname": "上海市",
             "citys": [
                 {
-                    "cid": "SH_1",
+                    "cid": "310",
                     "cname": "上海市"
                 }
             ]
         },
         {
-            "pid": "TJ",
+            "pid": "13",
             "pname": "天津市",
             "citys": [
                 {
-                    "cid": "TJ_1",
+                    "cid": "130",
                     "cname": "天津市"
                 }
             ]
         },
         {
-            "pid": "JS",
+            "pid": "34",
             "pname": "江苏省",
             "citys": [
                 {
-                    "cid": "JS_1",
+                    "cid": "340",
                     "cname": "南京市"
                 },
                 {
                     "cid": "JS_2",
-                    "cname": "无锡市"
+                    "cname": "330"
                 },
                 {
-                    "cid": "JS_3",
+                    "cid": "350",
                     "cname": "徐州市"
                 },
                 {
-                    "cid": "JS_4",
+                    "cid": "440",
                     "cname": "常州市"
                 },
                 {
-                    "cid": "JS_5",
+                    "cid": "450",
                     "cname": "苏州市"
                 },
                 {
@@ -606,63 +606,63 @@ var prolist= {
             ]
         },
         {
-            "pid": "SD",
+            "pid": "17",
             "pname": "山东省",
             "citys": [
                 {
-                    "cid": "SD_1",
+                    "cid": "170",
                     "cname": "济南市"
                 },
                 {
-                    "cid": "SD_2",
+                    "cid": "166",
                     "cname": "青岛市"
                 },
                 {
-                    "cid": "SD_3",
+                    "cid": "150",
                     "cname": "淄博市"
                 },
                 {
-                    "cid": "SD_4",
+                    "cid": "157",
                     "cname": "枣庄市"
                 },
                 {
-                    "cid": "SD_5",
+                    "cid": "156",
                     "cname": "东营市"
                 },
                 {
-                    "cid": "SD_6",
+                    "cid": "161",
                     "cname": "烟台市"
                 },
                 {
-                    "cid": "SD_7",
+                    "cid": "155",
                     "cname": "潍坊市"
                 },
                 {
-                    "cid": "SD_8",
+                    "cid": "158",
                     "cname": "济宁市"
                 },
                 {
-                    "cid": "SD_9",
+                    "cid": "172",
                     "cname": "泰安市"
                 },
                 {
-                    "cid": "SD_10",
+                    "cid": "152",
                     "cname": "威海市"
                 },
                 {
-                    "cid": "SD_11",
+                    "cid": "154",
                     "cname": "日照市"
                 },
                 {
-                    "cid": "SD_12",
+                    "cid": "160",
                     "cname": "莱芜市"
                 },
                 {
-                    "cid": "SD_13",
+                    "cid": "153",
                     "cname": "临沂市"
                 },
                 {
-                    "cid": "SD_14",
+                    "cid": "173",
                     "cname": "德州市"
                 },
                 {
@@ -1538,11 +1538,26 @@ $(function(){
 });
 function findCity(){
     var pid=$("#PROVINCE_CODE").val();
-    $("#EPARCHY_CODE").empty(); //清空城市列表
-    for(var i=0;i<prolist.ps.length;i++){
-        if(prolist.ps[i].pid==pid){
-            for(var j=0;j<prolist.ps[i].citys.length;j++){
-                $("#EPARCHY_CODE").append("<option value='"+prolist.ps[i].citys[j].cid+"'>"+prolist.ps[i].citys[j].cname+"</option>");
+    var EPARCHY_CODE = $("#EPARCHY_CODE");
+    if(EPARCHY_CODE!=null) {
+        $("#EPARCHY_CODE").empty(); //清空城市列表
+        for (var i = 0; i < prolist.ps.length; i++) {
+            if (prolist.ps[i].pid == pid) {
+                for (var j = 0; j < prolist.ps[i].citys.length; j++) {
+                    $("#EPARCHY_CODE").append("<option value='" + prolist.ps[i].citys[j].cid + "'>" + prolist.ps[i].citys[j].cname + "</option>");
+                }
+            }
+        }
+    }
+    var pid=$("#PROVINCE_CODE").val();
+    var CITY_CODE = $("#CITY_CODE");
+    if(CITY_CODE!=null) {
+        $("#CITY_CODE").empty(); //清空城市列表
+        for (var i = 0; i < prolist.ps.length; i++) {
+            if (prolist.ps[i].pid == pid) {
+                for (var j = 0; j < prolist.ps[i].citys.length; j++) {
+                    $("#CITY_CODE").append("<option value='" + prolist.ps[i].citys[j].cid + "'>" + prolist.ps[i].citys[j].cname + "</option>");
+                }
             }
         }
     }
